@@ -42,10 +42,10 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Открыть файл" VerticalAlignment="Center" Margin="8"/>
                 <TextBox x:Name="txb_fileuri" Margin="14,8" VerticalContentAlignment="Center" Grid.Column="1"/>
-                <Button Content="Открыть" Click="openFile_Click" Padding="5" MinWidth="120" Grid.Column="2" Margin="0,8,8,8"/>
+                <Button Content="Открыть" Click="OpenFile_Click" Padding="5" MinWidth="120" Grid.Column="2" Margin="0,8,8,8"/>
                 <TextBlock Text="Записать в файл" VerticalAlignment="Center" Grid.Row="1" Margin="8"/>
                 <TextBox x:Name="txb_writefile" Margin="14,8" VerticalContentAlignment="Center" Grid.Row="1" Grid.Column="1"/>
-                <Button Content="Записать" Click="writeFile_Click" Padding="5" MinWidth="120" Grid.Row="1" Grid.Column="2" Margin="0,8,8,8"/>
+                <Button Content="Записать" Click="WriteFile_Click" Padding="5" MinWidth="120" Grid.Row="1" Grid.Column="2" Margin="0,8,8,8"/>
                 <TextBox x:Name="txb_fileContent" TextWrapping="Wrap" Margin="8" Padding="5" Grid.ColumnSpan="3" Grid.Row="2"
            VerticalScrollBarVisibility="Visible"/>
             </Grid>

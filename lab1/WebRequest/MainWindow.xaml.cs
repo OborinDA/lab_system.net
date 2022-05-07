@@ -1,8 +1,9 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Windows;
-
+using System.Windows.Threading;
 
 namespace WebRequest
 {
@@ -15,21 +16,36 @@ namespace WebRequest
         {
             InitializeComponent();
         }
+
         private void request_Click(object sender, RoutedEventArgs e)
         {
-            // Создать объект запроса
             System.Net.WebRequest request = System.Net.WebRequest.Create(txb_url.Text);
+            request.BeginGetResponse(new AsyncCallback(OnResponse), request);
 
-            // Получить ответ с сервера
-            WebResponse response = request.GetResponse();
+        }
 
-            // Получаем поток данных из ответа
+        private void OpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            string filename = txb_fileuri.Text;
+            FileWebRequest request =
+                   (FileWebRequest)System.Net.WebRequest.Create(filename);
+
+            using (StreamReader sr = new StreamReader(request.GetResponse().GetResponseStream()))
+            {
+                txb_fileContent.Text = sr.ReadToEnd();
+            }
+        }
+
+        protected void OnResponse(IAsyncResult ar)
+        {
+            System.Net.WebRequest request = (System.Net.WebRequest)ar.AsyncState;
+            WebResponse response = request.EndGetResponse(ar);
             using (StreamReader stream = new StreamReader(response.GetResponseStream()))
             {
                 // Выводим исходный код страницы
                 string line;
                 while ((line = stream.ReadLine()) != null)
-                    txb_sourceCode.Text += line + "\n";
+                    Dispatcher.Invoke(() => txb_sourceCode.Text += line + "\n");
             }
 
             // Получаем некоторые данные о сервере
@@ -55,20 +71,11 @@ namespace WebRequest
                     messageServer += "\t" + n;
             }
 
-            txb_serverInfo.Text = messageServer;
-        }
-        private void openFile_Click(object sender, RoutedEventArgs e)
-        {
-            string filename = txb_fileuri.Text;
-            FileWebRequest request =
-                   (FileWebRequest)System.Net.WebRequest.Create(filename);
+            Dispatcher.Invoke(() => txb_serverInfo.Text = messageServer);
 
-            using (StreamReader sr = new StreamReader(request.GetResponse().GetResponseStream()))
-            {
-                txb_fileContent.Text = sr.ReadToEnd();
-            }
         }
-        private void writeFile_Click(object sender, RoutedEventArgs e)
+
+        private void WriteFile_Click(object sender, RoutedEventArgs e)
         {
             System.Net.WebRequest request = System.Net.WebRequest.Create(txb_fileuri.Text);
             request.Method = "PUT";
