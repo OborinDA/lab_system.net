@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1", "lab1\lab1.csproj", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebRequest", "WebRequest\WebRequest.csproj", "{3981A05B-092B-4AA1-9AC8-6D70DE0C828A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dns", "Dns\Dns.csproj", "{1CE2683A-CCFC-4EFF-89AE-1F4E70AA62AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3981A05B-092B-4AA1-9AC8-6D70DE0C828A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3981A05B-092B-4AA1-9AC8-6D70DE0C828A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3981A05B-092B-4AA1-9AC8-6D70DE0C828A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1CE2683A-CCFC-4EFF-89AE-1F4E70AA62AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1CE2683A-CCFC-4EFF-89AE-1F4E70AA62AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1CE2683A-CCFC-4EFF-89AE-1F4E70AA62AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1CE2683A-CCFC-4EFF-89AE-1F4E70AA62AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
