@@ -57,5 +57,25 @@ namespace WebRequest
 
             txb_serverInfo.Text = messageServer;
         }
+        private void openFile_Click(object sender, RoutedEventArgs e)
+        {
+            string filename = txb_fileuri.Text;
+            FileWebRequest request =
+                   (FileWebRequest)System.Net.WebRequest.Create(filename);
+
+            using (StreamReader sr = new StreamReader(request.GetResponse().GetResponseStream()))
+            {
+                txb_fileContent.Text = sr.ReadToEnd();
+            }
+        }
+        private void writeFile_Click(object sender, RoutedEventArgs e)
+        {
+            System.Net.WebRequest request = System.Net.WebRequest.Create(txb_fileuri.Text);
+            request.Method = "PUT";
+            using (StreamWriter sw = new StreamWriter(request.GetRequestStream()))
+            {
+                sw.Write(txb_writefile.Text);
+            }
+        }
     }
 }
